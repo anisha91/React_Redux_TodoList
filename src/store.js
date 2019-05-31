@@ -1,6 +1,6 @@
 const initialstate = {
-      value: ' ',
       arr: []
+  
 }
 
 const reducer = (state=initialstate, action) => {
@@ -9,16 +9,10 @@ const reducer = (state=initialstate, action) => {
        		arr= state.arr 
 	
 	switch(action.type){
-		case 'inputval':
-			return{
-       			...state,
-       			value:action.val
-       		}
        	case 'additem':
        		return{
        			...state,
-       			arr:[...state.arr,state.value],
-       			value: ""
+       			arr:[...state.arr,action.val.current.value]
        		}
 
        	case 'deleteitem':

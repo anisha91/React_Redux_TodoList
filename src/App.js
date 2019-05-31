@@ -3,7 +3,10 @@ import './App.css';
 import {connect} from 'react-redux';
 
 class App extends Component {
-
+     constructor(){
+        super();
+        this.textinput = React.createRef();
+      }
 
   render(){
     return(
@@ -12,12 +15,12 @@ class App extends Component {
       <input 
           type='text'
           placeholder="Item Name" 
-          value={this.props.value}
-          onChange={this.props.onhandlechange} />
+          ref={this.textinput}
+         />
 
       <br />
       <br />
-      <button onClick={this.props.onhandleclick}>submit</button>
+      <button onClick={this.props.onhandleclick.bind(this,this.textinput)}>submit</button>
 
       <ol>
       {this.props.arr.map((itm,index)=>{
@@ -38,12 +41,13 @@ const mapStateToProps = (state)=>{
 }
 const mapDispatchToProps = (dispatch)=>{
   return{
-
-onhandlechange:(e)=> dispatch({type: 'inputval', val: e.target.value}),
-onhandleclick:()=> dispatch({type: 'additem'}),
+onhandleclick:(val)=> dispatch({type: 'additem', val:val}),
 onhandledelete:(idx)=> dispatch({type: 'deleteitem', value: idx})
  }
 }
 
 
 export default connect(mapStateToProps,mapDispatchToProps)(App);
+
+
+
