@@ -4,15 +4,13 @@ const initialstate = {
 }
 
 const reducer = (state=initialstate, action) => {
-
-		let value= state.value,
-       		arr= state.arr 
 	
 	switch(action.type){
        	case 'additem':
+       	console.log("inside addItem", action.val.current)
        		return{
        			...state,
-       			arr:[...state.arr,action.val.current.value]
+       			arr: [...state.arr, action.val.current.value]
        		}
 
        	case 'deleteitem':

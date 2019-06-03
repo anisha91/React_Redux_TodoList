@@ -1,32 +1,32 @@
 import React, {Component} from 'react';
 import './App.css';
 import {connect} from 'react-redux';
+import TextInput from './components/TextInput';
+import Btn from './components/Btn';
+import List from './components/List';
 
 class App extends Component {
-     constructor(){
-        super();
-        this.textinput = React.createRef();
-      }
+  constructor(){
+    super()
+    this.inputRef = React.createRef()
+  }
+    
 
   render(){
     return(
       <div>
       <header className="App-header">
-      <input 
-          type='text'
-          placeholder="Item Name" 
-          ref={this.textinput}
-         />
+      <TextInput 
+      ref={this.inputRef}
+      />
 
       <br />
       <br />
-      <button onClick={this.props.onhandleclick.bind(this,this.textinput)}>submit</button>
+      <Btn onhandleclick={this.props.onhandleclick.bind(this, this.inputRef)}/>
 
-      <ol>
-      {this.props.arr.map((itm,index)=>{
-        return(<div><li>{itm}<button onClick={this.props.onhandledelete.bind(this,index)}>Delete</button></li></div>)
-      })}
-      </ol>
+      <List/>
+
+     
       </header>
       </div>
       )
